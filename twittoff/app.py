@@ -1,15 +1,10 @@
 from flask import Flask
 from .models import DB
 
-# Unix/Mac
-# 'sqlite:////absolute/path/to/db.sqlite3'
-# Windows
-# 'sqlite:///C:\\Users\\bruno\\OneDrive\\Desktop\\TwitOff\\twitoff\\db.sqlite3'
-
 def create_app():
     """Create and configure an instance of the Flask application"""
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\charl\\Documents\\MyGithub\\TwitOff\\twitoff\\db.sqlite3'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\charl\\Documents\\MyGithub\\TwittOff\\twittoff\\db.sqlite3'
     DB.init_app(app)
 
     @app.route('/')
