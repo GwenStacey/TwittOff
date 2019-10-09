@@ -1,14 +1,22 @@
-from flask import Flask
-from .models import DB
+'''Basic app creation'''
+from decouple import config
+from dotenv import load_dotenv
+from flask import Flask, render_template
+from .models import DB, User
+
+load_dotenv()
 
 def create_app():
     """Create and configure an instance of the Flask application"""
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\charl\\Documents\\MyGithub\\TwittOff\\twittoff\\db.sqlite3'
+    app.config['SQLALCHEMY_DATABASE_URI'] = config('DATABASE_URL')
     DB.init_app(app)
 
     @app.route('/')
     def root():
-        return("Welcome to TwitOff!")
+        users = User.query.all()
+        return render_template("base.html",
+                               title="Twittoff",
+                               users=users)
 
     return app
