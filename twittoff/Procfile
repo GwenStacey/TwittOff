@@ -1,1 +1,1 @@
-web: FLASK_APP=twittoff:APP flask run
+web: FLASK_APP=twittoff:APP -t 1200
